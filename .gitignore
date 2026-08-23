@@ -1,0 +1,8 @@
+# Environnement virtuel
+envdes/
+.envdes
+
+# Cache / fichiers inutiles
+__pycache__/
+*.pyc
+*.log
