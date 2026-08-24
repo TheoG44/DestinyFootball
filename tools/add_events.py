@@ -1,9 +1,9 @@
-
 import sqlite3
 
 conn = sqlite3.connect("./data/events.db")
 c = conn.cursor()
 
+# ====================== CREATE TYPE EVENTS ====================== #
 c.execute("""
     CREATE TABLE IF NOT EXISTS Media_Events (
     id INTEGER PRIMARY KEY,
@@ -20,11 +20,13 @@ c.execute("""
 c.execute("""
     CREATE TABLE IF NOT EXISTS Training_Events (
     id INTEGER PRIMARY KEY,
-    type TEXT NOT NULL,
     title TEXT NOT NULL,
     description TEXT NOT NULL,
-    effect TEXT NOT NULL,
-    probability REAL NOT NULL
+    answer_1 TEXT NOT NULL,
+    effect_1 TEXT NOT NULL,
+    answer_2 TEXT NOT NULL,
+    effect_2 TEXT NOT NULL,
+    probability REAL
 )
 """)
 
@@ -39,6 +41,13 @@ c.execute("""
 )
 """)
 
+# =============================================================== #
+
+
+
+
+# ========================== ADD EVENT ========================== #
+
 event = {
     "id": 1,
     "title": "Le jeune pigiste",
@@ -49,7 +58,6 @@ event = {
     "effect_2": "reputation-1",
     "probability": 2
 }
-
 
 c.execute("""
     INSERT INTO Media_Events
@@ -65,6 +73,9 @@ c.execute("""
     )
 """, event)
 
-
 conn.commit()
 conn.close()
+
+# =============================================================== #
+
+# Pour sup une table: c.execute("DROP TABLE IF EXISTS Training_Events")

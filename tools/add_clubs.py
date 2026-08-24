@@ -1,30 +1,11 @@
 # API : https://www.football-data.org/
 
-import requests # type: ignore
+import requests 
 import sqlite3
 
-
-conn = sqlite3.connect("./data/events.db")
-c = conn.cursor()
-
-# Table des league
-c.execute("""
-    CREATE TABLE IF NOT EXISTS Events (
-        id INTEGER PRIMARY KEY,
-        type TEXT,
-        title TEXT,
-        effect TEXT,
-        value TEXT,
-        probability TEXT,
-        events_id INTEGER,
-
-        FOREIGN KEY (events_id) REFERENCES Events(id)
-    )
-""")
-
-
-
 TOKEN = "f21402049a1349b7b4033ed510944121"
+
+
 
 conn = sqlite3.connect("./data/clubs.db")
 c = conn.cursor()
@@ -33,7 +14,7 @@ headers = {
     "X-Auth-Token": TOKEN
 }
 
-# Table des championnats
+# ====================== CREATE TABLE LEAGUES ====================== #
 c.execute("""
     CREATE TABLE IF NOT EXISTS Leagues (
         id INTEGER PRIMARY KEY,
@@ -42,7 +23,8 @@ c.execute("""
     )
 """)
 
-# Table des clubs
+
+# ====================== CREATE TABLE CLUBS ====================== #
 c.execute("""
     CREATE TABLE IF NOT EXISTS Clubs (
         id INTEGER PRIMARY KEY,
@@ -61,6 +43,7 @@ c.execute("""
 
 conn.commit()
 
+# ====================== INSERT NEW LEAGUE INTO LEAGUE ====================== #
 response = requests.get(
     "https://api.football-data.org/v4/competitions/",
     headers=headers
@@ -70,11 +53,9 @@ data = response.json()
 league_id = None
 
 for competition in data["competitions"]:
-    print(competition["name"])
-    if competition["name"] == "League Two":
+    if competition["name"] == "Eredivisie":
       
       league_id = competition["id"]
-      print(competition["id"])
 
       c.execute("""
             INSERT OR IGNORE INTO Leagues (
@@ -93,6 +74,8 @@ for competition in data["competitions"]:
     
 conn.commit()
 
+
+# ====================== INSERT NEW CLUB INTO CLUB ====================== #
 response = requests.get(
     f"https://api.football-data.org/v4/competitions/{league_id}/teams",
     headers=headers
@@ -101,9 +84,8 @@ response = requests.get(
 teams = response.json()
 
 for team in teams["teams"]:
-
     print(team["id"], team["name"])
-
+    
     c.execute("""
         INSERT OR IGNORE INTO Clubs (
             id,
@@ -131,6 +113,7 @@ for team in teams["teams"]:
 
 conn.commit()
 
+# ====================== DISPLAY ALL CLUBS ====================== #
 c.execute("""
     SELECT name, short_name, league_id
     FROM Clubs

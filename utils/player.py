@@ -35,9 +35,8 @@ class Player:
       Reputation: {self.reputation}
       
       Statistics:
-      {self.display_statistics()}
+{self.display_statistics()}
 
-      
       Club: {self.club}
       
       Note: {self.note}/100
@@ -61,106 +60,107 @@ class Player:
         return table
     
     def display_name(self):
-      return f"The player is {self.name}."
+        return f"The player is {self.name}."
 
 
 def create_player():
-  stats = {}
+    """
+      Create new player.
+      
+      Returns: New player (Object Player).
+    """
+    stats = {}
 
-  print("---- ⚙️ Player Creation ⚙️ ----")
-  
-  name = input("Entrer votre prenom/nom (first_name name): ")
-  nationality = input("Entrer votre nationalité: ")
-  post = input("Entrer votre poste: ")
-  while True: 
-    try:
-      number: int = int(input("Entrer votre numéro: "))
-      if 0 < number <= 99:
-        break
-      else:
-        print("number not 0 < number <= 99")
-    except ValueError:
-      print("Try again")
+    print("---- ⚙️ Player Creation ⚙️ ----")
     
-  
-  if post == "attacker":
-    stats = {
-          "Technical": random.randint(60, 70),
-          "Physical": random.randint(50, 70),
-          "Speed": random.randint(50, 70),
-          "Strike": random.randint(60, 70),
-          "Defence": random.randint(30, 50),
-          "Vision": random.randint(40, 60),
-          "Cold blood": random.randint(50, 70),
-          "Discipline": random.randint(40, 60),
-          "Relationship coach": 50,
-          "Locker room": 50,
-        }
-  elif post == "midfielder":
-    stats = {
-          "Technical": random.randint(60, 70),
-          "Physical": random.randint(50, 70),
-          "Speed": random.randint(50, 60),
-          "Strike": random.randint(40, 70),
-          "Vision": random.randint(60, 70),
-          "Defence": random.randint(40, 60),
-          "Cold blood": random.randint(40, 60),
-          "Discipline": random.randint(50, 70),
-          "Relationship coach": 50,
-          "Locker room": 50,
-        }
-  elif post == "defender":
-    stats = {
-          "Technical": random.randint(50, 60),
-          "Physical": random.randint(60, 70),
-          "Speed": random.randint(50, 60),
-          "Strike": random.randint(40, 60),
-          "Vision": random.randint(40, 60),
-          "Defence": random.randint(60, 70),
-          "Cold blood": random.randint(50, 70),
-          "Discipline": random.randint(50, 70),
-          "Relationship coach": 50,
-          "Locker room": 50,
-        }
-  elif post == "goalkeeper":
-    stats = {
-          "Technical": random.randint(50, 60),
-          "Physical": random.randint(60, 70),
-          "Speed": random.randint(50, 60),
-          "Strike": random.randint(40, 60),
-          "Vision": random.randint(40, 60),
-          "Defence": random.randint(60, 70),
-          "Cold blood": random.randint(50, 70),
-          "Discipline": random.randint(50, 70),
-          "Relationship coach": 50,
-          "Locker room": 50,
-        }
-  else:
-    print("❌ Error post")
-    return -1
-  
-  som: int = 0
-  for value in stats.values():
-    som += value
-  note: float = som / len(stats)  
+    name = input("Entrer votre prenom/nom (first_name name): ")
+    nationality = input("Entrer votre nationalité: ")
+    post = input("Entrer votre poste: ")
+    while True: 
+      try:
+        number: int = int(input("Entrer votre numéro: "))
+        if 0 < number <= 99:
+          break
+        else:
+          print("number not 0 < number <= 99")
+      except ValueError:
+        print("Try again")
+      
+    
+    if post == "attacker":
+      stats = {
+            "Technical": random.randint(60, 70),
+            "Physical": random.randint(50, 70),
+            "Speed": random.randint(50, 70),
+            "Strike": random.randint(60, 70),
+            "Defence": random.randint(30, 50),
+            "Vision": random.randint(40, 60),
+            "Cold blood": random.randint(50, 70),
+            "Discipline": random.randint(40, 60),
+            "Relationship coach": 50,
+            "Locker room": 50,
+          }
+    elif post == "midfielder":
+      stats = {
+            "Technical": random.randint(60, 70),
+            "Physical": random.randint(50, 70),
+            "Speed": random.randint(50, 60),
+            "Strike": random.randint(40, 70),
+            "Vision": random.randint(60, 70),
+            "Defence": random.randint(40, 60),
+            "Cold blood": random.randint(40, 60),
+            "Discipline": random.randint(50, 70),
+            "Relationship coach": 50,
+            "Locker room": 50,
+          }
+    elif post == "defender":
+      stats = {
+            "Technical": random.randint(50, 60),
+            "Physical": random.randint(60, 70),
+            "Speed": random.randint(50, 60),
+            "Strike": random.randint(40, 60),
+            "Vision": random.randint(40, 60),
+            "Defence": random.randint(60, 70),
+            "Cold blood": random.randint(50, 70),
+            "Discipline": random.randint(50, 70),
+            "Relationship coach": 50,
+            "Locker room": 50,
+          }
+    elif post == "goalkeeper":
+      stats = {
+            "Technical": random.randint(50, 60),
+            "Physical": random.randint(60, 70),
+            "Speed": random.randint(50, 60),
+            "Strike": random.randint(40, 60),
+            "Vision": random.randint(40, 60),
+            "Defence": random.randint(60, 70),
+            "Cold blood": random.randint(50, 70),
+            "Discipline": random.randint(50, 70),
+            "Relationship coach": 50,
+            "Locker room": 50,
+          }
+    else:
+      print("❌ Error post")
+      return -1
+    
+    som: int = 0
+    for value in stats.values():
+      som += value
+    note: float = som / len(stats)  
 
-
-  player = Player (
-    name,
-    16, 
-    nationality, 
-    post,
-    number, 
-    2, 
-    stats,
-    'Bayern',
-    note,
-    0.001,
-    []
-  )
-  
-  print("✅ The player is created")
-  print(player.display_name())
-  print(player.display_char())
-
-create_player()
+    player = Player (
+      name,
+      16, 
+      nationality, 
+      post,
+      number, 
+      2, 
+      stats,
+      '///',
+      note,
+      0.001,
+      []
+    )
+    
+    print("\n\n✅ The player is created")
+    print(player.display_char())
