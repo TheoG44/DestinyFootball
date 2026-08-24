@@ -1,3 +1,27 @@
+API Club : https://www.football-data.org/
+
+data/
+└── clubs.db
+└── events.db
+
+clubs.db
+│
+├── leagues
+│
+└── clubs
+
+events.db
+│
+├── event_types
+│
+├── media_events
+├── training_events
+├── career_events
+├── transfer_events
+└── ...
+
+
+
 Eléments :
 - Joueur
 - Club
@@ -28,8 +52,11 @@ Club :
 - Couleur (ex: Rouge et Blanc)
 
 Événement :
-- Nature (Proposition club, choix relation, choix de play pdt match,..)
+- Type (Proposition club, choix relation, choix de play pdt match,..)
 - Positif ou Négatif
+
+
+
 
 Saison :
 - But, passee D, match joué, carton rouge & jaune

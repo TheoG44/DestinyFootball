@@ -3,9 +3,30 @@
 import requests # type: ignore
 import sqlite3
 
+
+conn = sqlite3.connect("./data/events.db")
+c = conn.cursor()
+
+# Table des league
+c.execute("""
+    CREATE TABLE IF NOT EXISTS Events (
+        id INTEGER PRIMARY KEY,
+        type TEXT,
+        title TEXT,
+        effect TEXT,
+        value TEXT,
+        probability TEXT,
+        events_id INTEGER,
+
+        FOREIGN KEY (events_id) REFERENCES Events(id)
+    )
+""")
+
+
+
 TOKEN = "f21402049a1349b7b4033ed510944121"
 
-conn = sqlite3.connect("./data/database.db")
+conn = sqlite3.connect("./data/clubs.db")
 c = conn.cursor()
 
 headers = {
@@ -50,7 +71,7 @@ league_id = None
 
 for competition in data["competitions"]:
     print(competition["name"])
-    if competition["name"] == "Primera Division":
+    if competition["name"] == "League Two":
       
       league_id = competition["id"]
       print(competition["id"])
