@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 import random
 
+# ================================================================================ #
+
 @dataclass
 class Player:
     name: str
@@ -8,7 +10,6 @@ class Player:
     nationality: str
     post: str
     number: int
-    reputation: float
     statistics: dict[str, int]
     club: str
     note : float
@@ -31,8 +32,6 @@ class Player:
       Post: {self.post}
       
       Jersey Number: {self.number}
-      
-      Reputation: {self.reputation}
       
       Statistics:
 {self.display_statistics()}
@@ -61,6 +60,9 @@ class Player:
     
     def display_name(self):
         return f"The player is {self.name}."
+
+
+# ================================================================================ #
 
 
 def create_player():
@@ -99,6 +101,8 @@ def create_player():
             "Discipline": random.randint(40, 60),
             "Relationship coach": 50,
             "Locker room": 50,
+            "Reputation": 0,
+            "Mental": 50,
           }
     elif post == "midfielder":
       stats = {
@@ -112,6 +116,8 @@ def create_player():
             "Discipline": random.randint(50, 70),
             "Relationship coach": 50,
             "Locker room": 50,
+            "Reputation": 0,
+            "Mental": 50,
           }
     elif post == "defender":
       stats = {
@@ -125,6 +131,8 @@ def create_player():
             "Discipline": random.randint(50, 70),
             "Relationship coach": 50,
             "Locker room": 50,
+            "Reputation": 0,
+            "Mental": 50,
           }
     elif post == "goalkeeper":
       stats = {
@@ -138,6 +146,8 @@ def create_player():
             "Discipline": random.randint(50, 70),
             "Relationship coach": 50,
             "Locker room": 50,
+            "Reputation": 0,
+            "Mental": 50,
           }
     else:
       print("❌ Error post")
@@ -154,13 +164,16 @@ def create_player():
       nationality, 
       post,
       number, 
-      2, 
       stats,
       '///',
       note,
       0.001,
-      []
+      [],
     )
     
     print("\n\n✅ The player is created")
     print(player.display_char())
+    
+    return player
+    
+    

@@ -57,7 +57,10 @@ BUG a PATCH
 ──────────────────────────────────────────────────────
 To Do List
 
-- Rajouter colonne tier + renseigner colonne
-- Enrichir BDD Events
-- Creer script pour traduire effets
-- Rajouter comment_1, comment_2 (texte suite au réponse choisi) 
+-/ Rajouter colonne tier + renseigner colonne + affichage tier
+-/ Enrichir BDD Events
+-/ Creer script pour traduire effets de Events
+-/ Rajouter comment_1, comment_2 (texte suite au réponse choisi) 
+
+
+tier d2, (c, b, a, S) = D1

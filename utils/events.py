@@ -2,6 +2,7 @@ from dataclasses import dataclass
 import sqlite3
 import random
 
+# ================================================================================ #
 
 @dataclass
 class MediaEvent:
@@ -10,8 +11,12 @@ class MediaEvent:
     description: str
     answer_1: str
     effect_1: str
+    comment_1: str
     answer_2: str
     effect_2: str
+    comment_2: str
+    type_event: str # type d'event (ex: media, carrer,..)
+    type_effect: str
     probability: float
 
 
@@ -23,7 +28,7 @@ class MediaEvent:
           Returns: Formatted text for the event.
         """
         return f"""
-🖋️ Médias
+  {self.type_event} {self.id} {self.type_effect}
 
 {self.title}
 
@@ -32,10 +37,60 @@ class MediaEvent:
 [1] {self.answer_1}
 
 [2] {self.answer_2}
+
+DEBUG : 
+    - Comment1 : {self.comment_1} Effect : {self.effect_1}
+    - Comment2 : {self.comment_2} Effect : {self.effect_2}
+"""
+
+# ================================================================================ #
+
+@dataclass
+class RelationshipEvent:
+    id: int
+    title: str
+    description: str
+    answer_1: str
+    effect_1: str
+    comment_1: str
+    answer_2: str
+    effect_2: str
+    comment_2: str
+    type_event: str # type d'event (ex: media, carrer,..)
+    type_effect: str
+    probability: float
+
+
+
+    def display_event(self):
+        """
+          Formats the event for display in the terminal.
+
+          Returns: Formatted text for the event.
+        """
+        return f"""
+  {self.type_event} {self.type_effect}
+
+{self.title}
+
+{self.description}
+
+[1] {self.answer_1}
+
+[2] {self.answer_2}
+
+DEBUG : 
+    - Comment1 : {self.comment_1} Effect : {self.effect_1}
+    - Comment2 : {self.comment_2} Effect : {self.effect_2}
 """
 
 
-def get_event(id):
+
+
+
+# ================================================================================ #
+
+def get_event_media(id):
     """
       Recover an event from its id.
     
@@ -66,7 +121,11 @@ def get_event(id):
         row[4],
         row[5],
         row[6],
-        row[7]
+        row[7],
+        row[8],
+        row[9],
+        row[10],
+        row[11]
     )
     return event
 
@@ -79,18 +138,20 @@ def random_event():
 
     Returns: Random event
   """
-  id = random.randint(1, 20)
-  return get_event(id)
+  id = random.randint(1, 65) # modify param based on number events
+  return get_event_media(id)
 
+# ================================================================================ #
 
 
 
 
 # =============== TEST =============== #
-
+"""
 event = random_event()
 
 if event is not None:
     print(event.display_event())
+"""
 
 
