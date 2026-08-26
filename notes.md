@@ -53,3 +53,11 @@ BUG a PATCH
 
 - choix aleatoire de 2x le mm club
 
+
+──────────────────────────────────────────────────────
+To Do List
+
+- Rajouter colonne tier + renseigner colonne
+- Enrichir BDD Events
+- Creer script pour traduire effets
+- Rajouter comment_1, comment_2 (texte suite au réponse choisi) 

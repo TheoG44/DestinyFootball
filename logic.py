@@ -13,9 +13,10 @@ def random_choice_club():
     
     conn = sqlite3.connect("./data/clubs.db")
     c = conn.cursor()
+    
     for _ in range(5):
       c.execute(
-            "SELECT short_name, club_colors  FROM Clubs ORDER BY RANDOM() LIMIT 1"
+            "SELECT short_name, club_colors, country FROM Clubs JOIN Leagues ON Clubs.league_id = Leagues.id ORDER BY RANDOM() LIMIT 1"
             )
       row = c.fetchone()
       
@@ -44,12 +45,23 @@ def display_color_club(club_list):
         "Green": "🟢",
         "Black": "⚫",
         "Orange": "🟠",
-        "brown": "🟤",
+        "Brown": "🟤",
         "Purple": "🟣",
         "Violet": "🟣"
     }
 
-    for club, chain in club_list:
+    flags = {
+      "Spain": "🇪🇸 ",
+      "Italy": "🇮🇹 ",
+      "France": "🇫🇷 ",
+      "Germany": "🇩🇪 ",
+      "Netherlands": "🇳🇱 ",
+      "England": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+      "Portugal": "🇵🇹 ",
+      
+      
+    }
+    for club, chain, countrys in club_list:
 
         club_colors = chain.split(" / ")
 
@@ -58,5 +70,7 @@ def display_color_club(club_list):
         for color in club_colors:
             emojis.append(colors[color])
 
-        print(f"[{club}, {''.join(emojis)}]\n")
+          
+        print(f"[{club}, {''.join(emojis)}, {flags[countrys]}]\n")
+
 
