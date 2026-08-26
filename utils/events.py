@@ -6,6 +6,7 @@ import random
 
 @dataclass
 class MediaEvent:
+
     id: int
     title: str
     description: str
@@ -47,6 +48,7 @@ DEBUG :
 
 @dataclass
 class RelationshipEvent:
+    
     id: int
     title: str
     description: str
@@ -94,9 +96,9 @@ def get_event_media(id):
     """
       Recover an event from its id.
     
-      Args: id, (int)
+      Args: id (int)
     
-      Returns: event, (Object MediaEvent)
+      Returns: event (:MediaEvent) -> Object event
     """
     
     conn = sqlite3.connect("./data/events.db")
@@ -136,7 +138,7 @@ def random_event():
 
     Args: None
 
-    Returns: Random event
+    Returns: an random event
   """
   id = random.randint(1, 65) # modify param based on number events
   return get_event_media(id)
@@ -146,7 +148,7 @@ def random_event():
 
 
 
-# =============== TEST =============== #
+# ================================================================================ #
 """
 event = random_event()
 

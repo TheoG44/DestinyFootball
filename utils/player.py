@@ -5,6 +5,7 @@ import random
 
 @dataclass
 class Player:
+
     name: str
     age: int 
     nationality: str
@@ -67,9 +68,9 @@ class Player:
 
 def create_player():
     """
-      Create new player.
+      Function for create new player.
       
-      Returns: New player (Object Player).
+      Returns: player (:Player) -> new player
     """
     stats = {}
 

@@ -3,8 +3,9 @@ from logic import random_choice_club, stat_update_event, choice_answer_event, di
 from utils.events import random_event, MediaEvent
 
 player = create_player()
+
 """
-theo_player = Player(
+player = Player(
       "theo lecon",
       16, 
       "France", 
@@ -17,17 +18,17 @@ theo_player = Player(
       ["yo"]
     )
 """
-print("\n\n================================================================== \n")
+
+print("\n ================================================================== \n")
 
 club_list = random_choice_club()
 display_color_club(club_list)
-
 player.club = choice_answer_club(club_list)
 
 
-print("\n\n================================================================== \n")
-
 while True:
+  print("\n\n================================================================== \n")
+  
   event = random_event()
 
   if event is not None:

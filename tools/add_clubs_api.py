@@ -14,34 +14,6 @@ headers = {
     "X-Auth-Token": TOKEN
 }
 
-# ====================== CREATE TABLE LEAGUES ====================== #
-c.execute("""
-    CREATE TABLE IF NOT EXISTS Leagues (
-        id INTEGER PRIMARY KEY,
-        name TEXT,
-        country TEXT
-    )
-""")
-
-
-# ====================== CREATE TABLE CLUBS ====================== #
-c.execute("""
-    CREATE TABLE IF NOT EXISTS Clubs (
-        id INTEGER PRIMARY KEY,
-        name TEXT,
-        short_name TEXT,
-        tla TEXT,
-        crest TEXT,
-        founded INTEGER,
-        club_colors TEXT,
-        venue TEXT,
-        league_id INTEGER,
-
-        FOREIGN KEY (league_id) REFERENCES Leagues(id)
-    )
-""")
-
-conn.commit()
 
 # ====================== INSERT NEW LEAGUE INTO LEAGUE ====================== #
 response = requests.get(

@@ -1,4 +1,7 @@
-API Club : https://www.football-data.org/
+API Club : 
+https://www.football-data.org/
+https://www.api-football.com/ 
+https://www.thesportsdb.com/
 
 ────────────────────────────────────────────────
 envdes/
@@ -14,11 +17,6 @@ tools/
 utils/
 └── events.py
 └── player.py
-
-.gitignore
-__main__.py
-notes.md
-requierements.txt
 
 clubs.db
 └──leagues
@@ -58,9 +56,17 @@ BUG a PATCH
 To Do List
 
 -/ Rajouter colonne tier + renseigner colonne + affichage tier
--/ Enrichir BDD Events
 -/ Creer script pour traduire effets de Events
 -/ Rajouter comment_1, comment_2 (texte suite au réponse choisi) 
+- Enrichir BDD Events (Avec nv type d'event)
+- Creer event Mercato (nv salaire, club, prime signature)
+- rajouter fortune joueur dans param joueur
+- Creer un choix de s'entrainer pour gagner stats
+- creer fonction pour bilan de fin saison saison.py
+- creer historique de saison (stats, trophe de chaque saison)
+- comment le joueur influence les resultat de son club
+- ajouter des logs (import loggings)
+- ajouter system d'historique
 
 
 tier d2, (c, b, a, S) = D1

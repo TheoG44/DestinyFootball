@@ -3,13 +3,11 @@ import sqlite3
 conn = sqlite3.connect("./data/events.db")
 c = conn.cursor()
 
-# ---------  --------- #
+# ====================== EXE COMMANDS ====================== #
 c.execute("""
         UPDATE Relationship_Events SET type_event = 'Relationship'
       
       """)
-
-
 
 conn.commit()
 conn.close()

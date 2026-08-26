@@ -497,6 +497,7 @@ events_re = [
         "probability": 3
     }
 ]
+# ====================== INSERT DICT TO TABLE ====================== #
 
 for i in range(len(events_re)):
   c.execute("""
