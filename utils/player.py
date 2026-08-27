@@ -17,13 +17,13 @@ class Player:
     salary: float
     distinction: list[str]
   
-    def display_char(self):
+    def display_player(self):
         """
           Formats the event for display in the terminal.
     
           Returns: Formatted text for the event.
         """
-        return f"""
+        print(f"""
       [👤] {self.name}
       
       Age: {self.age}
@@ -44,7 +44,7 @@ class Player:
       Salary: {self.salary}M€
       
       Distinction: {self.distinction}
-      """
+      """)
     
     def display_statistics(self):
         table = (

@@ -59,6 +59,7 @@ To Do List
 -/ Creer script pour traduire effets de Events
 -/ Rajouter comment_1, comment_2 (texte suite au réponse choisi) 
 - Enrichir BDD Events (Avec nv type d'event)
+- rajouter année de contrat a joueur et mettre a jour a club de depart et nv club
 - Creer event Mercato (nv salaire, club, prime signature)
 - rajouter fortune joueur dans param joueur
 - Creer un choix de s'entrainer pour gagner stats
@@ -67,6 +68,19 @@ To Do List
 - comment le joueur influence les resultat de son club
 - ajouter des logs (import loggings)
 - ajouter system d'historique
+- rajouter année de contrat restant et gain totaux de player
+
+
+
+
+
+Ajouter systeme de classement dans la saison du club du joueur, 
+les choix de FootballMoment influent les classement,
+1 footballMoment par match et 10 match par saison.
++ ajouter fonction affiche classment de la ligue
+
+Ajouter event de selection. Systeme coupe du monde.
+
 
 
 tier d2, (c, b, a, S) = D1

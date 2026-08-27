@@ -5,13 +5,12 @@ c = conn.cursor()
 
 # ====================== EXE COMMANDS ====================== #
 c.execute("""
-        UPDATE Relationship_Events SET type_event = 'Relationship'
+        DROP TABLE IF EXISTS FootballMoment_Events
       
       """)
 
 conn.commit()
 conn.close()
-
 
 # SELECT short_name FROM Clubs WHERE tier = 'S'
 # UPDATE Clubs SET tier = 'D2' WHERE league_id = '2016'

@@ -1,9 +1,10 @@
 import sqlite3
+from utils.events import MediaEvent 
 
 
 # ================================================================================ #
 
-def random_choice_club():
+def random_choice_club() -> list[tuple]:
     """
       Randomly select 5 clubs in clubs.db.
       
@@ -21,10 +22,6 @@ def random_choice_club():
             "SELECT short_name, club_colors, country, tier FROM Clubs JOIN Leagues ON Clubs.league_id = Leagues.id WHERE tier = 'D2' ORDER BY RANDOM() LIMIT 1"
             )
       row = c.fetchone()
-      
-      if row is None:
-            conn.close()
-            return None
 
       club_list.append(row)
       
@@ -36,7 +33,7 @@ def random_choice_club():
 # ================================================================================ #
 
 
-def display_color_club(club_list):
+def display_color_club(club_list: list[tuple]):
     """
       Display beautifully club_list. 
           
@@ -135,7 +132,7 @@ def stat_update_event(effect: str, dic):
 
 # ================================================================================ #
 
-def choice_answer_event(event):
+def choice_answer_event(event: MediaEvent) -> str:
     """
       Retrieve the selected effect.
           
@@ -150,13 +147,12 @@ def choice_answer_event(event):
       effect = event.effect_2
     else:
       print("Error")
-      return -1
     
     return effect
 
 # ================================================================================ #
 
-def choice_answer_club(club_list):
+def choice_answer_club(club_list: list[tuple]) -> str:
     """
       Select a club from the club list.
               
@@ -177,7 +173,7 @@ def choice_answer_club(club_list):
         club = club_list[4][0]
     else:
       print("Error")
-      return -1
-    print(f"Vous avez bien choisi {club} comme club de départ !")
+      
+    print(f"\nVous avez bien choisi {club} comme club de départ !")
     
     return club
