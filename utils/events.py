@@ -168,7 +168,49 @@ DEBUG :
     - Comment3 : {self.comment_3} Effect : {self.effect_3}
 """)
 
+
 # ================================================================================ #
+
+@dataclass
+class TrainingEvent:
+    
+    id: int
+    title: str
+    description: str
+    answer_1: str # Entrainement serieux (+ de stats sup)
+    effect_1: str 
+    comment_1: str
+    answer_2: str # Pas de nv stats + de mental et forme
+    effect_2: str
+    comment_2: str
+    post: str # adapter au type de post
+    type_event: str #type training
+
+
+
+    def display_event(self):
+        """
+          Formats the event for display in the terminal.
+
+          Returns: Formatted text for the event.
+        """
+        print(f"""
+
+{self.title}
+
+{self.description}
+
+[1] {self.answer_1}
+
+[2] {self.answer_2}
+
+DEBUG : 
+    - Comment1 : {self.comment_1} Effect : {self.effect_1}
+    - Comment2 : {self.comment_2} Effect : {self.effect_2}
+""")
+
+# ================================================================================ #
+
 
 def get_event_random_media():
     """

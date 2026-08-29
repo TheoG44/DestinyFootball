@@ -16,6 +16,9 @@ class Player:
     note : float
     salary: float
     distinction: list[str]
+    contract: int
+    net_worth: float
+    
   
     def display_player(self):
         """
@@ -44,6 +47,10 @@ class Player:
       Salary: {self.salary}M€
       
       Distinction: {self.distinction}
+      
+      Remaining year contract : {self.contract} year
+      
+      Net Worth : {self.net_worth}$
       """)
     
     def display_statistics(self):
@@ -98,12 +105,13 @@ def create_player():
             "Strike": random.randint(60, 70),
             "Defence": random.randint(30, 50),
             "Vision": random.randint(40, 60),
-            "Cold blood": random.randint(50, 70),
+            "Cold_blood": random.randint(50, 70),
             "Discipline": random.randint(40, 60),
-            "Relationship coach": 50,
-            "Locker room": 50,
+            "Relationship_coach": 50,
+            "Locker_room": 50,
             "Reputation": 0,
             "Mental": 50,
+            "Forme": 50,
           }
     elif post == "midfielder":
       stats = {
@@ -113,12 +121,13 @@ def create_player():
             "Strike": random.randint(40, 70),
             "Vision": random.randint(60, 70),
             "Defence": random.randint(40, 60),
-            "Cold blood": random.randint(40, 60),
+            "Cold_blood": random.randint(40, 60),
             "Discipline": random.randint(50, 70),
-            "Relationship coach": 50,
-            "Locker room": 50,
+            "Relationship_coach": 50,
+            "Locker_room": 50,
             "Reputation": 0,
             "Mental": 50,
+            "Forme": 50,
           }
     elif post == "defender":
       stats = {
@@ -128,12 +137,13 @@ def create_player():
             "Strike": random.randint(40, 60),
             "Vision": random.randint(40, 60),
             "Defence": random.randint(60, 70),
-            "Cold blood": random.randint(50, 70),
+            "Cold_blood": random.randint(50, 70),
             "Discipline": random.randint(50, 70),
-            "Relationship coach": 50,
-            "Locker room": 50,
+            "Relationship_coach": 50,
+            "Locker_room": 50,
             "Reputation": 0,
             "Mental": 50,
+            "Forme": 50,
           }
     elif post == "goalkeeper":
       stats = {
@@ -143,12 +153,13 @@ def create_player():
             "Strike": random.randint(40, 60),
             "Vision": random.randint(40, 60),
             "Defence": random.randint(60, 70),
-            "Cold blood": random.randint(50, 70),
+            "Cold_blood": random.randint(50, 70),
             "Discipline": random.randint(50, 70),
-            "Relationship coach": 50,
-            "Locker room": 50,
+            "Relationship_coach": 50,
+            "Locker_room": 50,
             "Reputation": 0,
             "Mental": 50,
+            "Forme": 50,
           }
     else:
       print("❌ Error post")
@@ -170,6 +181,8 @@ def create_player():
       note,
       0.001,
       [],
+      3,
+      0
     )
     
     print("\n\n✅ The player is created")

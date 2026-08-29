@@ -1,8 +1,13 @@
 from utils.player import create_player, Player
 from logic import random_choice_club, stat_update_event, choice_answer_event, display_color_club, choice_answer_club
 from utils.events import get_event_random_media, get_event_random_footballmoment, tier_club, random_club_low, random_club_sup, create_mercato_event, choice_answer_mercato, MediaEvent
+from utils.season import create_season, Season
+import random
+
+
 
 # ===== Create player object ===== #
+
 #player = create_player()
 player = Player(
       "theo lecon",
@@ -10,12 +15,16 @@ player = Player(
       "France", 
       "attacker",
       22, 
-      {"Technical": 70, "Physical": 70, "Speed": 70, "Strike": 70, "Defence": 50, "Vision": 60, "Cold blood": 70, "Discipline": 60, "Relationship coach": 50, "Locker room": 50, "Reputation": 0, "Mental": 50},
-      "PSG",
+      {"Technical": 70, "Physical": 70, "Speed": 70, "Strike": 70, "Defence": 50, "Vision": 60, "Cold_blood": 70, "Discipline": 60, "Relationship_coach": 50, "Locker_room": 50, "Reputation": 0, "Mental": 50, "Forme": 50},
+      "Levante",
       99.0,
       0.001,
-      ["yo"]
+      ["yo"],
+      3,
+      0
     )
+
+player.display_player()
 
 # ===== Choice of starting club ===== #
 
@@ -32,18 +41,11 @@ club_offer = create_mercato_event(random_club_sup(tier_club(player.club)))
 club_offer.display_event()
 choice_answer_mercato(club_offer, player)
 
-# ===== Main games by season ===== #
+# ===== New Season ===== #
 
-while True:
-  print("\n\n================================================================== \n")
+##### RAJOUTER FONCTION POUR AFFICHER LA REPONSE CHOISIS DE LEVENT #####
 
-  event = get_event_random_footballmoment(player.post)
+print("\n\n================================================================== \n")
 
-  if event is not None:
-      event.display_event()
-
-  effect = choice_answer_event(event)
-
-  stat_update_event(effect, player.statistics) 
-
-
+season = create_season(player)
+season.display_season()

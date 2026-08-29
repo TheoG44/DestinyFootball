@@ -60,15 +60,15 @@ To Do List
 -/ Rajouter comment_1, comment_2 (texte suite au réponse choisi) 
 - Enrichir BDD Events (Avec nv type d'event)
 - rajouter année de contrat a joueur et mettre a jour a club de depart et nv club
-- Creer event Mercato (nv salaire, club, prime signature)
-- rajouter fortune joueur dans param joueur
+-/ Creer event Mercato (nv salaire, club, prime signature)
 - Creer un choix de s'entrainer pour gagner stats
 - creer fonction pour bilan de fin saison saison.py
 - creer historique de saison (stats, trophe de chaque saison)
 - comment le joueur influence les resultat de son club
 - ajouter des logs (import loggings)
 - ajouter system d'historique
-- rajouter année de contrat restant et gain totaux de player
+- armoniser nom effet des tables events
+-/ rajouter année de contrat restant et gain totaux de player
 
 
 

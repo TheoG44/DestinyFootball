@@ -5,9 +5,11 @@ c = conn.cursor()
 
 # ====================== EXE COMMANDS ====================== #
 c.execute("""
-        DROP TABLE IF EXISTS FootballMoment_Events
-      
-      """)
+        UPDATE Media_Events
+    SET effect_1 = REPLACE(effect_1, 'Relationship_coach', 'relationship_coach'),
+    effect_2 = REPLACE(effect_1, 'Relationship_coach', 'relationship_coach');
+
+  """)
 
 conn.commit()
 conn.close()
@@ -18,3 +20,8 @@ conn.close()
 # ALTER TABLE Media_Events ADD COLUMN comment_2 TEXT
 # DELETE FROM Media_Events
 # Pour sup une table: c.execute("DROP TABLE IF EXISTS Training_Events")
+"""UPDATE FootballMoment_Events
+    SET effect_1 = REPLACE(effect_1, 'Locker room', 'Locker_room'),
+    effect_2 = REPLACE(effect_2, 'Locker room', 'Locker_room'),
+    effect_3 = REPLACE(effect_3, 'Locker room', 'Locker_room');
+"""
