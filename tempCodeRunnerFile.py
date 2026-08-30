@@ -1,1 +1,1 @@
-stat_update_event(effect, player.statistics)
+table

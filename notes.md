@@ -59,19 +59,20 @@ To Do List
 -/ Creer script pour traduire effets de Events
 -/ Rajouter comment_1, comment_2 (texte suite au réponse choisi) 
 - Enrichir BDD Events (Avec nv type d'event)
-- rajouter année de contrat a joueur et mettre a jour a club de depart et nv club
+-/ rajouter année de contrat a joueur et mettre a jour a club de depart et nv club
 -/ Creer event Mercato (nv salaire, club, prime signature)
-- Creer un choix de s'entrainer pour gagner stats
 - creer fonction pour bilan de fin saison saison.py
 - creer historique de saison (stats, trophe de chaque saison)
 - comment le joueur influence les resultat de son club
 - ajouter des logs (import loggings)
 - ajouter system d'historique
-- armoniser nom effet des tables events
+-/ armoniser nom effet des tables events
 -/ rajouter année de contrat restant et gain totaux de player
 
+- créer events blessure (+ plus probabilité arriver si forme -50)
+- Creer events de s'entrainer pour gagner stats
 
-
+Faire si le joueur est dans un club S et fais un saison au dessus de 7/10, 80% gagner sa league
 
 
 Ajouter systeme de classement dans la saison du club du joueur, 

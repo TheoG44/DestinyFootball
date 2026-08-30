@@ -115,6 +115,10 @@ class MercatoEvent:
 
 {self.description}
 
+Contract term : {self.year}
+
+Salary : {self.salary}$ /year
+
 [1] {self.answer_1}
 
 [2] {self.answer_2}
@@ -459,3 +463,6 @@ def choice_answer_mercato(event: MercatoEvent, player: Player):
       print(f"\nVous avez fait le choix de rester à {player.club}.")
     else:
       print("Error")
+    
+    # Update remaining contract player
+    player.contract = event.year

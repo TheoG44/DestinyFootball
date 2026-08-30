@@ -45,7 +45,13 @@ class Season:
       """)
         
 def create_season(player: Player) -> Season :
-  
+    """
+      Create new season depending on events.
+        
+      Args : player (:Player)
+      
+      Returns: season (:Season) -> object season
+    """
     for _ in range(10):
       
       event = get_event_random_footballmoment(player.post)
