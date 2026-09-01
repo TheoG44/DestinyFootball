@@ -177,3 +177,28 @@ def choice_answer_club(club_list: list[tuple]) -> str:
     print(f"\nVous avez bien choisi {club} comme club de départ !")
     
     return club
+
+
+def new_year(year: str) -> str:
+    """
+      Add an additional year.
+              
+      Args: year (str) -> previous year
+              
+      Returns: year (str) -> year actual
+    """
+    new = ""
+    chain_year = year.split("/")
+    
+
+    chain = chain_year[0]
+    chain = int(chain)
+    chain += 1
+    new += str(chain)
+    new += "/"
+    chain = chain_year[1]
+    chain = int(chain)
+    chain += 1
+    new += str(chain)
+    
+    return new

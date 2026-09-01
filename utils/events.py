@@ -45,6 +45,43 @@ DEBUG :
     - Comment2 : {self.comment_2} Effect : {self.effect_2}
 """)
 
+def get_event_random_media() -> MediaEvent:
+    """
+      Recover an event from its id.
+    
+      Args: id (int)
+    
+      Returns: event (:MediaEvent) -> Object event
+    """
+    id = random.randint(1, 65)
+    
+    conn = sqlite3.connect("./data/events.db")
+    c = conn.cursor()
+
+    c.execute(
+        "SELECT * FROM Media_Events WHERE id = ?",
+        (id,)
+    )
+
+    row = c.fetchone()
+    conn.close()
+    
+    event = MediaEvent(
+        row[0],
+        row[1],
+        row[2],
+        row[3],
+        row[4],
+        row[5],
+        row[6],
+        row[7],
+        row[8],
+        row[9],
+        row[10],
+        row[11]
+    )
+    return event
+
 # ================================================================================ #
 
 @dataclass
@@ -87,6 +124,44 @@ DEBUG :
     - Comment2 : {self.comment_2} Effect : {self.effect_2}
 """)
 
+def get_event_random_relationship() -> RelationshipEvent:
+    """
+      Recover an event from its id.
+    
+      Args: id (int)
+    
+      Returns: event (:RelationshipEvent) -> Object event
+    """
+    id = random.randint(0, 80)
+    
+    conn = sqlite3.connect("./data/events.db")
+    c = conn.cursor()
+
+    c.execute(
+        "SELECT * FROM FootballMoment_Events WHERE id = ?",
+        (id,)
+    )
+
+    row = c.fetchone()
+    conn.close()
+
+    event = RelationshipEvent(
+        row[0],
+        row[1],
+        row[2],
+        row[3],
+        row[4],
+        row[5],
+        row[6],
+        row[7],
+        row[8],
+        row[9],
+        row[10],
+        row[11]
+    )
+    return event
+
+
 # ================================================================================ #
 
 @dataclass
@@ -124,6 +199,7 @@ Salary : {self.salary}$ /year
 [2] {self.answer_2}
 
 """)
+
 
 # ================================================================================ #
 
@@ -172,6 +248,48 @@ DEBUG :
     - Comment3 : {self.comment_3} Effect : {self.effect_3}
 """)
 
+def get_event_random_footballmoment(post: str) -> FootballMomentEvent:
+    """
+      Recover an event from its id.
+    
+      Args: id (int)
+    
+      Returns: event (:FootballMoment) -> Object event
+    """
+    
+    conn = sqlite3.connect("./data/events.db")
+    c = conn.cursor()
+
+    c.execute(
+        "SELECT * FROM FootballMoment_Events WHERE post = ? ORDER BY RANDOM() LIMIT 1",
+        (post,)
+    )
+
+    row = c.fetchone()
+    conn.close()
+
+    event = FootballMomentEvent(
+        row[0],
+        row[1],
+        row[2],
+        row[3],
+        row[4],
+        row[5],
+        row[6],
+        row[7],
+        row[8],
+        row[9],
+        row[10],
+        row[11],
+        row[12],
+        row[13],
+        row[14]
+    )
+    return event
+
+
+
+
 
 # ================================================================================ #
 
@@ -189,6 +307,7 @@ class TrainingEvent:
     comment_2: str
     post: str # adapter au type de post
     type_event: str #type training
+    probability: int
 
 
 
@@ -213,34 +332,28 @@ DEBUG :
     - Comment2 : {self.comment_2} Effect : {self.effect_2}
 """)
 
-# ================================================================================ #
 
-
-def get_event_random_media():
+def get_event_random_training(post: str) -> TrainingEvent:
     """
       Recover an event from its id.
     
       Args: id (int)
     
-      Returns: event (:MediaEvent) -> Object event
+      Returns: event (:TrainingEvent) -> Object event
     """
-    id = random.randint(1, 65)
     
     conn = sqlite3.connect("./data/events.db")
     c = conn.cursor()
 
     c.execute(
-        "SELECT * FROM Media_Events WHERE id = ?",
-        (id,)
+        "SELECT * FROM Training_Events WHERE post = ?",
+        (post,)
     )
 
     row = c.fetchone()
     conn.close()
 
-    if row is None:
-        return None
-
-    event = MediaEvent(
+    event = TrainingEvent(
         row[0],
         row[1],
         row[2],
@@ -259,30 +372,63 @@ def get_event_random_media():
 
 # ================================================================================ #
 
-def get_event_random_footballmoment(post: str):
+@dataclass
+class InjuryEvent:
+
+    id: int
+    title: str
+    description: str
+    effect: str
+    comment: str
+    type_event: str 
+    tier: str #tier A,B et C (legere, moyenne, grave)
+    probability: float
+
+
+
+    def display_event(self):
+        """
+          Formats the event for display in the terminal.
+
+          Returns: Formatted text for the event.
+        """
+        print(f"""
+  {self.type_event} {self.id} 
+
+{self.title}
+
+{self.description}
+
+Gravity : {self.tier}
+
+{self.comment}
+
+DEBUG : Effect : {self.effect}
+
+""")
+
+
+def get_event_random_injury(tier: str) -> InjuryEvent:
     """
       Recover an event from its id.
     
-      Args: id (int)
+      Args: stats (str) -> player.stats
     
-      Returns: event (:FootballMoment) -> Object event
+      Returns: event (:InjuryEvent) -> Object event
     """
-    
+      
     conn = sqlite3.connect("./data/events.db")
     c = conn.cursor()
-
+    
     c.execute(
-        "SELECT * FROM FootballMoment_Events WHERE post = ? ORDER BY RANDOM() LIMIT 1",
-        (post,)
+        "SELECT * FROM Injury_Events WHERE tier = ?",
+        (tier,)
     )
 
     row = c.fetchone()
     conn.close()
 
-    if row is None:
-        return None
-
-    event = FootballMomentEvent(
+    event = InjuryEvent(
         row[0],
         row[1],
         row[2],
@@ -290,20 +436,14 @@ def get_event_random_footballmoment(post: str):
         row[4],
         row[5],
         row[6],
-        row[7],
-        row[8],
-        row[9],
-        row[10],
-        row[11],
-        row[12],
-        row[13],
-        row[14]
+        row[7]
     )
     return event
 
 
-
 # ================================================================================ #
+
+
 def tier_club(club: str) -> str:
     """
       Return Tier of the club.
@@ -361,6 +501,7 @@ def random_club_sup(tier: str):
     conn.close()
     
     return club
+
 
 def random_club_low(tier: str):
     """
@@ -443,8 +584,7 @@ def create_mercato_event(club: str) -> MercatoEvent :
     )
     
     return event
-  
-# ================================================================================ #
+
 
 def choice_answer_mercato(event: MercatoEvent, player: Player):
     """

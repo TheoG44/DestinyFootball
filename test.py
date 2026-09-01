@@ -17,3 +17,7 @@ def display_league_ranking(ranking: list):
       
       
 print(display_league_ranking(ranking))
+
+
+      
+      

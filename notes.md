@@ -71,6 +71,8 @@ To Do List
 
 - créer events blessure (+ plus probabilité arriver si forme -50)
 - Creer events de s'entrainer pour gagner stats
+- changer stats unique pour le goalkeeper (reflex, detente,..)
+- manque Training_Events pour goalkeeper
 
 Faire si le joueur est dans un club S et fais un saison au dessus de 7/10, 80% gagner sa league
 
