@@ -58,32 +58,34 @@ To Do List
 -/ Rajouter colonne tier + renseigner colonne + affichage tier
 -/ Creer script pour traduire effets de Events
 -/ Rajouter comment_1, comment_2 (texte suite au réponse choisi) 
-- Enrichir BDD Events (Avec nv type d'event)
+-/ Enrichir BDD Events (Avec nv type d'event)
 -/ rajouter année de contrat a joueur et mettre a jour a club de depart et nv club
 -/ Creer event Mercato (nv salaire, club, prime signature)
-- creer fonction pour bilan de fin saison saison.py
-- creer historique de saison (stats, trophe de chaque saison)
-- comment le joueur influence les resultat de son club
-- ajouter des logs (import loggings)
-- ajouter system d'historique
+-/ creer fonction pour bilan de fin saison saison.py
+-/ comment le joueur influence les resultat de son club
+-/ ajouter des logs (import loggings)
 -/ armoniser nom effet des tables events
 -/ rajouter année de contrat restant et gain totaux de player
+-/ créer events blessure (+ plus probabilité arriver si forme -50)
+-/ Creer events de s'entrainer pour gagner stats
 
-- créer events blessure (+ plus probabilité arriver si forme -50)
-- Creer events de s'entrainer pour gagner stats
-- changer stats unique pour le goalkeeper (reflex, detente,..)
-- manque Training_Events pour goalkeeper
-
-Faire si le joueur est dans un club S et fais un saison au dessus de 7/10, 80% gagner sa league
-
-
-Ajouter systeme de classement dans la saison du club du joueur, 
-les choix de FootballMoment influent les classement,
-1 footballMoment par match et 10 match par saison.
-+ ajouter fonction affiche classment de la ligue
 
 Ajouter event de selection. Systeme coupe du monde.
 
+- gestion erreur des input player
+- fix proposition club de deppart pas doublons 
+
+- creer historique de saison (stats, trophe de chaque saison)
+- revoir comment fonctionne vrmt : create_league_ranking()
+- ajouter fonction prologation club
+- rajouter gestion de titre
+- rajouter gestion distinction joueur
+- changer stats unique pour le goalkeeper (reflex, detente,..)
+manque Training_Events pour goalkeeper
+
+- Equilibrage du jeu au gloabal
+- Bloquer les stats a max 100
+- Faire une GUI
 
 
 tier d2, (c, b, a, S) = D1

@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from utils.player import Player
 import sqlite3
+import logging
 import random
 
 # ================================================================================ #
@@ -30,7 +31,7 @@ class MediaEvent:
           Returns: Formatted text for the event.
         """
         print(f"""
-  {self.type_event} {self.id} {self.type_effect}
+  🎙️{self.type_event} {self.id}
 
 {self.title}
 
@@ -53,14 +54,12 @@ def get_event_random_media() -> MediaEvent:
     
       Returns: event (:MediaEvent) -> Object event
     """
-    id = random.randint(1, 65)
     
     conn = sqlite3.connect("./data/events.db")
     c = conn.cursor()
 
     c.execute(
-        "SELECT * FROM Media_Events WHERE id = ?",
-        (id,)
+        "SELECT * FROM Media_Events ORDER BY RANDOM() LIMIT 1"
     )
 
     row = c.fetchone()
@@ -80,6 +79,7 @@ def get_event_random_media() -> MediaEvent:
         row[10],
         row[11]
     )
+    logging.info("✅ GET MediaEvent: %s", event.id)
     return event
 
 # ================================================================================ #
@@ -109,7 +109,7 @@ class RelationshipEvent:
           Returns: Formatted text for the event.
         """
         print(f"""
-  {self.type_event} {self.type_effect}
+  👥{self.type_event} {self.id}
 
 {self.title}
 
@@ -132,14 +132,12 @@ def get_event_random_relationship() -> RelationshipEvent:
     
       Returns: event (:RelationshipEvent) -> Object event
     """
-    id = random.randint(0, 80)
     
     conn = sqlite3.connect("./data/events.db")
     c = conn.cursor()
 
     c.execute(
-        "SELECT * FROM FootballMoment_Events WHERE id = ?",
-        (id,)
+        "SELECT * FROM FootballMoment_Events ORDER BY RANDOM() LIMIT 1"
     )
 
     row = c.fetchone()
@@ -159,46 +157,8 @@ def get_event_random_relationship() -> RelationshipEvent:
         row[10],
         row[11]
     )
+    logging.info("✅ GET RelationshipEvent: %s", event.id)
     return event
-
-
-# ================================================================================ #
-
-@dataclass
-class MercatoEvent:
-    
-    title: str
-    club: str
-    year: int
-    salary: float
-    description: str
-    answer_1: str
-    answer_2: str
-    type_event: str 
-
-
-    def display_event(self):
-        """
-          Formats the event for display in the terminal.
-
-          Returns: Formatted text for the event.
-        """
-        print(f"""
-  {self.type_event} 
-
-{self.title}
-
-{self.description}
-
-Contract term : {self.year}
-
-Salary : {self.salary}$ /year
-
-[1] {self.answer_1}
-
-[2] {self.answer_2}
-
-""")
 
 
 # ================================================================================ #
@@ -231,7 +191,8 @@ class FootballMomentEvent:
           Returns: Formatted text for the event.
         """
         print(f"""
-
+  ⚽{self.type_event} {self.id}
+  
 {self.title}
 
 {self.description}
@@ -285,6 +246,8 @@ def get_event_random_footballmoment(post: str) -> FootballMomentEvent:
         row[13],
         row[14]
     )
+    
+    logging.info("✅ GET FootballMomentEvent: %s", event.id)
     return event
 
 
@@ -318,7 +281,8 @@ class TrainingEvent:
           Returns: Formatted text for the event.
         """
         print(f"""
-
+  👟{self.type_event} {self.id}
+    
 {self.title}
 
 {self.description}
@@ -367,6 +331,8 @@ def get_event_random_training(post: str) -> TrainingEvent:
         row[10],
         row[11]
     )
+    
+    logging.info("✅ GET TrainingEvent: %s", event.id)
     return event
 
 
@@ -393,7 +359,7 @@ class InjuryEvent:
           Returns: Formatted text for the event.
         """
         print(f"""
-  {self.type_event} {self.id} 
+  🤕{self.type_event} {self.id} 
 
 {self.title}
 
@@ -438,10 +404,96 @@ def get_event_random_injury(tier: str) -> InjuryEvent:
         row[6],
         row[7]
     )
+    
+    logging.info("✅ GET InjuryEvent: %s", event.id)
     return event
 
 
 # ================================================================================ #
+
+@dataclass
+class MercatoEvent:
+    
+    title: str
+    club: str
+    year: int
+    salary: float
+    description: str
+    answer_1: str
+    answer_2: str
+    type_event: str 
+
+
+    def display_event(self):
+        """
+          Formats the event for display in the terminal.
+
+          Returns: Formatted text for the event.
+        """
+        print(f"""
+  🤝{self.type_event} 
+  
+{self.title}
+
+{self.description}
+
+Contract term : {self.year}
+
+Salary : {self.salary}$ /year
+
+[1] {self.answer_1}
+
+[2] {self.answer_2}
+
+""")
+
+def create_mercato_event(club: str) -> MercatoEvent :
+    """
+      Creates the MercatoEvent object.
+                
+      Args: club (str)
+                
+      Returns: event (MercatoEvent) -> MercatoEvent object
+    """
+    conn = sqlite3.connect("./data/clubs.db")
+    c = conn.cursor()
+    
+    c.execute(
+            "SELECT short_name, club_colors, country, tier FROM Clubs JOIN Leagues ON Clubs.league_id = Leagues.id WHERE short_name = ?",
+        (club,) 
+    )
+    
+    club_prm = c.fetchone()
+    conn.close()
+    
+    match club_prm[3]:
+        case "S":
+          salary = round(random.uniform(10, 20), 2)
+        case "A":
+          salary = round(random.uniform(3, 10), 2)
+        case "B":
+          salary = round(random.uniform(3, 10), 2)
+        case "C":
+          salary = round(random.uniform(1, 4), 2)
+        case "D2":
+          salary = round(random.uniform(0.2, 0.9), 2)
+    
+    
+    year = random.randint(2, 5)
+    
+    event = MercatoEvent (
+      "Un Nouveaux club s'intéresse à vous !",
+      club,
+      year,
+      salary,
+      f"{club} vous propose un contrat de {year} ans avec un salaire de {salary}M €/y hors prime. Souhaitez vous accepter ce contrat ? ",
+      "Accepter l'offre",
+      "Refuser l'offre",
+      "Mercato" 
+    )
+    
+    logging.info("✅ GET MercatoEvent: %s", event.club)
+    return event
 
 
 def tier_club(club: str) -> str:
@@ -538,54 +590,6 @@ def random_club_low(tier: str):
     return club
 
 
-def create_mercato_event(club: str) -> MercatoEvent :
-    """
-      Creates the MercatoEvent object.
-                
-      Args: club (str)
-                
-      Returns: event (MercatoEvent) -> MercatoEvent object
-    """
-    conn = sqlite3.connect("./data/clubs.db")
-    c = conn.cursor()
-    
-    c.execute(
-            "SELECT short_name, club_colors, country, tier FROM Clubs JOIN Leagues ON Clubs.league_id = Leagues.id WHERE short_name = ?",
-        (club,) 
-    )
-    
-    club_prm = c.fetchone()
-    conn.close()
-    
-    match club_prm[3]:
-        case "S":
-          salary = round(random.uniform(10, 20), 2)
-        case "A":
-          salary = round(random.uniform(3, 10), 2)
-        case "B":
-          salary = round(random.uniform(3, 10), 2)
-        case "C":
-          salary = round(random.uniform(1, 4), 2)
-        case "D2":
-          salary = round(random.uniform(0.2, 0.9), 2)
-    
-    
-    year = random.randint(2, 5)
-    
-    event = MercatoEvent (
-      "Un Nouveaux club s'intéresse à vous !",
-      club,
-      year,
-      salary,
-      f"{club} vous propose un contrat de {year} ans avec un salaire de {salary}M $/y hors prime. Souhaitez vous accepter ce contrat ? ",
-      "Accepter l'offre",
-      "Refuser l'offre",
-      "Mercato" 
-    )
-    
-    return event
-
-
 def choice_answer_mercato(event: MercatoEvent, player: Player):
     """
       Retrieve the selected effect.
@@ -604,5 +608,6 @@ def choice_answer_mercato(event: MercatoEvent, player: Player):
     else:
       print("Error")
     
-    # Update remaining contract player
+    # Update remaining contract player and salary
     player.contract = event.year
+    player.salary = event.salary

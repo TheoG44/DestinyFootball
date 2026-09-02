@@ -1,2 +1,1 @@
-
-      Match: {self.match}
+event.tier == "C"

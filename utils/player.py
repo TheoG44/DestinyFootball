@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 import random
+import logging
+
 
 # ================================================================================ #
 
@@ -13,7 +15,7 @@ class Player:
     number: int
     statistics: dict[str, int]
     club: str
-    note : float
+    note : int
     salary: float
     distinction: list[str]
     contract: int
@@ -50,7 +52,7 @@ class Player:
       
       Remaining year contract : {self.contract} year
       
-      Net Worth : {self.net_worth}$
+      Net Worth : {self.net_worth}M €
       """)
     
     def display_statistics(self):
@@ -95,6 +97,7 @@ def create_player():
           print("number not 0 < number <= 99")
       except ValueError:
         print("Try again")
+        logging.error("❌ number jersey choice")
       
     
     if post == "attacker":
@@ -111,7 +114,7 @@ def create_player():
             "Locker_room": 50,
             "Reputation": 0,
             "Mental": 50,
-            "Forme": 50,
+            "Forme": 90,
           }
     elif post == "midfielder":
       stats = {
@@ -127,7 +130,7 @@ def create_player():
             "Locker_room": 50,
             "Reputation": 0,
             "Mental": 50,
-            "Forme": 50,
+            "Forme": 90,
           }
     elif post == "defender":
       stats = {
@@ -143,7 +146,7 @@ def create_player():
             "Locker_room": 50,
             "Reputation": 0,
             "Mental": 50,
-            "Forme": 50,
+            "Forme": 90,
           }
     elif post == "goalkeeper":
       stats = {
@@ -159,17 +162,19 @@ def create_player():
             "Locker_room": 50,
             "Reputation": 0,
             "Mental": 50,
-            "Forme": 50,
+            "Forme": 90,
           }
     else:
-      print("❌ Error post")
       return -1
     
-    som: int = 0
+    som = 0
     for value in stats.values():
       som += value
-    note: float = som / len(stats)  
-
+    
+    # arrondie entier sup
+    note = round(sum(stats.values()) / len(stats))
+    club = "'///'"
+    
     player = Player (
       name,
       16, 
@@ -177,16 +182,13 @@ def create_player():
       post,
       number, 
       stats,
-      '///',
+      club,
       note,
       0.001,
       [],
       3,
       0
     )
-    
-    print("\n\n✅ The player is created")
-    print(player.display_char())
     
     return player
     

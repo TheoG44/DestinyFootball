@@ -5,10 +5,10 @@ c = conn.cursor()
 
 # ====================== EXE COMMANDS ====================== #
 c.execute("""
-        UPDATE Media_Events
-    SET effect_1 = REPLACE(effect_1, 'Relationship_coach', 'relationship_coach'),
-    effect_2 = REPLACE(effect_1, 'Relationship_coach', 'relationship_coach');
-
+        UPDATE FootballMoment_Events
+    SET answer_1 = REPLACE(answer_1, '**', ''),
+        answer_2 = REPLACE(answer_2, '**', ''),
+        answer_3 = REPLACE(answer_3, '**', '');
   """)
 
 conn.commit()
