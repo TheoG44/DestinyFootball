@@ -82,12 +82,34 @@ def create_player():
       Returns: player (:Player) -> new player
     """
     stats = {}
-
+    post_possibility = ['attacker', 'midfielder', 'defender', 'goalkeeper']
+    nationality_possibility = ['France', 'Spain', 'UK']
+    
     print("---- ⚙️ Player Creation ⚙️ ----")
     
     name = input("Entrer votre prenom/nom (first_name name): ")
-    nationality = input("Entrer votre nationalité: ")
-    post = input("Entrer votre poste: ")
+    
+    while True: 
+              try:
+                nationality: str = str(input("Entrer votre nationalité: "))
+                if nationality in nationality_possibility:
+                  break
+                else:
+                  print("Les nationnlité possibles sont ['France', 'Spain', 'UK']")
+              except ValueError:
+                print("Try again")
+                logging.error("❌ Error input nationnality")
+    while True: 
+          try:
+            post: str = str(input("Entrer votre poste: "))
+            if post in post_possibility:
+              break
+            else:
+              print("Les postes possibles sont ['attacker', 'midfielder', 'defender', 'goalkeeper']")
+          except ValueError:
+            print("Try again")
+            logging.error("❌ Error input post")
+            
     while True: 
       try:
         number: int = int(input("Entrer votre numéro: "))
@@ -173,7 +195,7 @@ def create_player():
     
     # arrondie entier sup
     note = round(sum(stats.values()) / len(stats))
-    club = "'///'"
+    club = "///"
     
     player = Player (
       name,

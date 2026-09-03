@@ -72,12 +72,12 @@ To Do List
 
 Ajouter event de selection. Systeme coupe du monde.
 
-- gestion erreur des input player
-- fix proposition club de deppart pas doublons 
+-/ gestion erreur des input player
+-/ fix proposition club de deppart pas doublons 
 
 - creer historique de saison (stats, trophe de chaque saison)
 - revoir comment fonctionne vrmt : create_league_ranking()
-- ajouter fonction prologation club
+-/ ajouter fonction prologation club
 - rajouter gestion de titre
 - rajouter gestion distinction joueur
 - changer stats unique pour le goalkeeper (reflex, detente,..)

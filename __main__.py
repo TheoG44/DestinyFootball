@@ -1,6 +1,6 @@
 from utils.player import create_player, Player
 from logic import random_choice_club, stat_update_event, choice_answer_event, display_color_club, choice_answer_club, new_year
-from utils.events import get_event_random_media, get_event_random_footballmoment, tier_club, random_club_low, random_club_sup, create_mercato_event, choice_answer_mercato, MediaEvent
+from utils.events import get_event_random_media, get_event_random_footballmoment, create_extension_club_event, tier_club, random_club_low, random_club_sup, create_mercato_event, choice_answer_mercato, MediaEvent
 from utils.season import create_season, Season
 from utils.league_ranking import create_league_ranking, display_league_ranking
 import logging
@@ -49,9 +49,13 @@ def Game():
     
     # ===== Choice Offer extension from club ===== #
     if player.contract == 0:
-        ...
-        # demande de prolongation du club
-    
+      club_offer = create_extension_club_event(player.club)
+      club_offer.display_event()
+      choice_answer_mercato(club_offer, player)
+      logging.info("✅ Player joined club: %s", player.club)
+    else:
+      print("Vous êtes partie la retraite !")
+      break
     
     print("\n ================================================================== \n")
     

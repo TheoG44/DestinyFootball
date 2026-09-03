@@ -12,22 +12,22 @@ def random_choice_club() -> list[tuple]:
       
       Returns: club_list (list) -> list of 5 clubs
     """
-    club_list = []
     
     conn = sqlite3.connect("./data/clubs.db")
     c = conn.cursor()
     
     for _ in range(5):
       c.execute(
-            "SELECT short_name, club_colors, country, tier FROM Clubs JOIN Leagues ON Clubs.league_id = Leagues.id WHERE tier = 'D2' ORDER BY RANDOM() LIMIT 1"
+            "SELECT short_name, club_colors, country, tier FROM Clubs JOIN Leagues ON Clubs.league_id = Leagues.id WHERE tier = 'D2' ORDER BY RANDOM() LIMIT 5"
             )
-      row = c.fetchone()
-
-      club_list.append(row)
+    row = c.fetchall()
+    
+    print(f"row :{row}")
       
     conn.close()
     
-    return club_list
+    return row
+
 
 
 # ================================================================================ #

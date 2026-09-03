@@ -611,3 +611,52 @@ def choice_answer_mercato(event: MercatoEvent, player: Player):
     # Update remaining contract player and salary
     player.contract = event.year
     player.salary = event.salary
+    
+
+def create_extension_club_event(club: str) -> MercatoEvent :
+    """
+      Creates the MercatoEvent object.
+                
+      Args: club (str)
+                
+      Returns: event (MercatoEvent) -> MercatoEvent object
+    """
+    conn = sqlite3.connect("./data/clubs.db")
+    c = conn.cursor()
+    
+    c.execute(
+            "SELECT short_name, club_colors, country, tier FROM Clubs JOIN Leagues ON Clubs.league_id = Leagues.id WHERE short_name = ?",
+        (club,) 
+    )
+    
+    club_prm = c.fetchone()
+    conn.close()
+    
+    match club_prm[3]:
+        case "S":
+          salary = round(random.uniform(10, 20), 2)
+        case "A":
+          salary = round(random.uniform(3, 10), 2)
+        case "B":
+          salary = round(random.uniform(3, 10), 2)
+        case "C":
+          salary = round(random.uniform(1, 4), 2)
+        case "D2":
+          salary = round(random.uniform(0.2, 0.9), 2)
+    
+    
+    year = random.randint(2, 5)
+    
+    event = MercatoEvent (
+      "Votre club veut vous prolonger.",
+      club,
+      year,
+      salary,
+      f"{club} vous propose un nouveau contrat de {year} ans avec un salaire de {salary}M €/y hors prime. Souhaitez vous accepter ce contrat ? ",
+      "Accepter l'offre",
+      "Refuser l'offre",
+      "Mercato" 
+    )
+    
+    logging.info("✅ GET MercatoEvent: %s", event.club)
+    return event
